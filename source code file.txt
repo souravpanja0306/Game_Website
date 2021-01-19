@@ -1,0 +1,333 @@
+
+
+
+Website url:- https://job-portal-28.web.app/
+github:- https://github.com/subhampanja/job-portal
+
+
+
+
+source code :-
+
+Index js
+
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+
+
+
+App js
+
+
+import './App.css';
+import Main from './component/Main';
+function App() {
+  return (
+    <div>
+      <Main />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Main js
+
+
+
+import React, { useState } from 'react'
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Shortlisted from './Shortlisted';
+import Rejected from './Rejected';
+import Header from './Header';
+import Body from './Body';
+import User from './User';
+import Footer from './Footer';
+
+
+function Main() {
+    const [shortListed, setShortListed] = useState([]);
+    const [rejected, setRejected] = useState([]);
+
+    const shortlistedChange = (e) => {
+        setShortListed([...shortListed, { Image: e.Image, name: e.name, id: e.id }])
+    }
+    const rejectChange = (e) => {
+        setRejected([...rejected, { Image: e.Image, name: e.name, id: e.id }])
+    }
+
+    return (
+        <BrowserRouter>
+            <Header />
+            <Switch>
+                <Route path="/shortlisted">
+                    <Shortlisted data={shortListed} />
+                </Route>
+                <Route path="/rejected" component={Rejected} >
+                    <Rejected  data={rejected} />
+                </Route>
+                <Route path="/user/:id" component={User} />
+                <Route pat="/" exact>
+                    <Body shortlist={(e) => shortlistedChange(e)} rejectlist={(e) => rejectChange(e)} />
+                </Route>
+            </Switch>
+            <Footer />
+        </BrowserRouter>
+    )
+}
+
+export default Main
+
+
+
+body JS
+
+
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+
+function Body({shortlist, rejectlist}) {
+    const [users, setUsers] = useState([]);
+    const [candiSearch, setCandiSearch] = useState("");
+
+    const loadUser = async () => {
+        const usersget = await fetch("https://s3-ap-southeast-1.amazonaws.com/he-public-data/users49b8675.json");
+        const getUser = await usersget.json();
+        setUsers(getUser);
+    }
+
+    useEffect(() => {
+        loadUser()
+    }, []);
+
+    const searchCan = (e) => {
+        setCandiSearch(e.target.value);
+    }
+
+
+    const FilterUser = users.filter((user) => user.name.includes(candiSearch));
+
+    const shortlisted = (e) => {
+        shortlist(e)
+    }
+    const rejectlisted = (e) => {
+        rejectlist(e)
+    }
+
+    return (
+        <div className="container">
+            <div className="w-100 mt-4">
+                <input type="text" className="form-control" placeholder="Search Candidate..." value={candiSearch} onChange={(e) => searchCan(e)} />
+            </div>
+            <div className="row">
+                {
+                    FilterUser.map((user) => (
+                        <div className="col-md-4" key={user.id}>
+                            <div className="card mt-5" style={{ width: "18rem" }}>
+                                <img className="card-img-top" src={user.Image} alt={user.name} style={{ width: "100%", height: "16rem" }} />
+                                <div className="card-body">
+                                    <h5 className="card-title">{user.name}</h5>
+                                    <div className="d-flex justify-content-between">
+                                        <Link to={`/user/${user.id}`}>
+                                            <button className="btn btn-info">View</button>
+                                        </Link>
+                                        <button className="btn btn-success" onClick={(e) => shortlisted(user)}>Shortlisted</button>
+                                        <button className="btn btn-danger" onClick={(e) => rejectlisted(user)}>Rejected</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    ))
+                }
+            </div>
+
+        </div >
+    )
+}
+
+export default Body
+
+
+
+header js 
+
+
+import React from 'react'
+import { NavLink } from "react-router-dom"
+
+function Header() {
+    return (
+        <div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-info">
+                <NavLink className="navbar-brand text-white" to="/">Job Portal</NavLink>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav w-100 d-flex justify-content-end">
+                        <NavLink to="/shortlisted" >
+                            <li className="nav-item">
+                                <button className="nav-link btn btn-primary text-white mr-4">ShortListed</button>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/rejected">
+                        <li className="nav-item">
+                            <button className="nav-link btn btn-danger text-white">Rejected</button>
+                        </li>
+                        </NavLink>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    )
+}
+
+export default Header
+
+
+
+user js
+
+
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from "react-router-dom"
+
+// need to work on it
+
+// getting some issue with showing the state data. i am still learning
+
+function User() {
+    let { id } = useParams();
+
+    const [user, setUser] = useState({});
+
+    const loadUser = async () => {
+        const usersget = await fetch("https://s3-ap-southeast-1.amazonaws.com/he-public-data/users49b8675.json");
+        const getUser = await usersget.json();
+        const FilterUser = getUser.filter((user) => user.id === id);
+        setUser(FilterUser);
+    }
+    useEffect(() => {
+        loadUser()
+    }, []);
+
+    return (
+        <div className="container">
+            <div className="card mt-5" style={{ width: "100%" }}>
+                <img className="card-img-top" src={user.Image} style={{ width: "100%", height: "16rem" }} />
+                <div className="card-body">
+                    <div className="text-center">
+                        <h5 className="card-title">{user.name}</h5>
+                    </div>
+                    <Link to="/" className="btn btn-success">Back</Link>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default User
+
+
+
+shortlisted js
+
+
+
+import React from 'react'
+
+function Shortlisted({data}) {
+    return (
+        <div className="container row">
+             {
+                    data.map((user) => (
+                        <div className="col-md-4" key={user.id}>
+
+                            <div className="card mt-5" style={{ width: "18rem" }}>
+                                <img className="card-img-top" src={user.Image} alt={user.name} style={{ width: "100%", height: "16rem" }} />
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">{user.name}</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    ))
+                }
+        </div>
+    )
+}
+
+export default Shortlisted
+
+
+
+
+rejected js 
+
+
+import React from 'react'
+
+function Rejected({data}) {
+    return (
+        <div className="container row">
+             {
+                    data.map((user) => (
+                        <div className="col-md-4" key={user.id}>
+
+                            <div className="card mt-5" style={{ width: "18rem" }}>
+                                <img className="card-img-top" src={user.Image} alt={user.name} style={{ width: "100%", height: "16rem" }} />
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">{user.name}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+        </div>
+    )
+}
+
+export default Rejected
+
+
+
+
+footer js
+
+
+import React from 'react'
+
+function Footer() {
+    return (
+        <div className="container mt-5 pt-5">
+            <div className="container text-center">
+                <h5>Developed By <span className="text-primary"><a href="https://subhampanja-28.web.app" target="_blank">Subham Panja</a></span></h5>
+            </div>
+        </div>
+    )
+}
+
+export default Footer
+
+
