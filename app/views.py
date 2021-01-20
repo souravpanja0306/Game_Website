@@ -15,8 +15,14 @@ def service(request):
 def contactus(request):
     return render(request, 'contactus.html')
 
-def carrer(request):
+def career(request):
     return render(request, 'career.html')
 
 def signin(request):
     return render(request, 'signin.html')
+
+def login(request):
+    return render(request, 'login.html')
+
+def forgetpass(request):
+    return render(request, 'forgetpass.html')
