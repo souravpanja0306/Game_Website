@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="" style="background-image: url('project/static/b.jpg');background-size: cover">
+
+
+    <div class="col-sm-6 p-5 ">
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Sign In
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Old Password">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="New Password">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn btn-dark">Change</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                I am ready ! <a href="/signin" aria-current="page" href="#" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Log In</a><br>
+                <!-- <a href="/forgetpass">Forget Passwrod</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
