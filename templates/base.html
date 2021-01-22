@@ -31,25 +31,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/product">Product</a>
+                        <a class="nav-link {% block home %} {% endblock home %}" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/about">About</a>
+                        <a class="nav-link {% block product %} {% endblock product %}" aria-current="page" href="/product">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/service">Services</a>
+                        <a class="nav-link {% block about %} {% endblock about %}" aria-current="page" href="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/career">Career</a>
+                        <a class="nav-link {% block service %} {% endblock service %}" aria-current="page" href="/service">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="contactus">Contact Us</a>
+                        <a class="nav-link {% block career %} {% endblock career %}" aria-current="page" href="/career">Career</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% block contactus %} {% endblock contactus %}" aria-current="page" href="contactus">Contact Us</a>
                     </li>
                 </ul>
                 <div>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal"
+                            <a class="nav-link" aria-current="page" href="#" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Log In</a>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -137,6 +140,9 @@
                             <a class="nav-link text-light" aria-current="page" href="/">
                                 <h4>BurnWolf</h4>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="/product">Product</a>

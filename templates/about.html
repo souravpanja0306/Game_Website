@@ -1,63 +1,73 @@
 {% extends 'base.html' %}
+{% block about %} active {% endblock about %}
 
 {% block content %}
-<div class="" style="background-image: url('project/static/bg2.jpg');background-size: cover">
-<h2 class='text-center text-light container-fluid pt-3'>Team Member</h2>
+<!-- <div class="" style="background-image: url('project/static/bg2.jpg');background-size: cover"> -->
+<h2 class='text-center text-dark container-fluid pt-3'>About Us</h2>
+<div class="container">
+    <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nam odio repellendus repellat rerum, assumenda
+        provident incidunt, molestiae aspernatur veritatis recusandae ea nostrum enim architecto consectetur autem eum
+        accusantium labore ab iure fuga. Nihil nam iusto, commodi cum qui modi porro quae, eaque corporis in, ex
+        molestias
+        accusamus architecto iste?
+    </h3>
+</div>
+<h2 class='text-center text-dark container-fluid pt-3'>Team Member</h2>
 
-    <div class="container mt-3">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
-                    aria-controls="home" aria-selected="true">Founder</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
-                    aria-controls="profile" aria-selected="false">CEO</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
-                    aria-controls="contact" aria-selected="false">Engineer</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
-                    aria-controls="contact" aria-selected="false">Engineer</a>
-            </li>
-        </ul>
+<div class="container mt-3">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home"
+                aria-selected="true">Founder</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                aria-selected="false">CEO</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                aria-selected="false">Engineer</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                aria-selected="false">Engineer</a>
+        </li>
+    </ul>
 
 
-        <div class="tab-content pb-3" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="card mt-3" style="width: 18rem;">
-                    <img src="project/static/0.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, impedit?</p>
-                    </div>
+    <div class="tab-content pb-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="card mt-3" style="width: 18rem;">
+                <img src="project/static/0.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, impedit?</p>
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="card mt-3" style="width: 18rem;">
-                    <img src="project/static/00.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="card mt-3" style="width: 18rem;">
+                <img src="project/static/00.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
                 </div>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                <div class="card mt-3" style="width: 18rem;">
-                    <img src="project/static/0.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="card mt-3" style="width: 18rem;">
+                <img src="project/static/0.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- </div> -->
 
 {% endblock content %}
